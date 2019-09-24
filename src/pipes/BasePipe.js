@@ -26,4 +26,12 @@ export default class BasePipe {
     modelNamespace() {
         return window.store.getters.settings['LaravelFileFactory']['Model namespace']['value']        
     }    
+
+    calculateFiles(omc = ObjectModelCollection){
+        return [ ]
+    }
+
+    calculatePartialFiles(omc = ObjectModelCollection) {
+        return [ ]
+    }
 }

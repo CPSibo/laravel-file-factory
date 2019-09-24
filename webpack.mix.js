@@ -19,6 +19,11 @@ mix.webpackConfig({
     libraryTarget: 'umd',    
     umdNamedDefine: true
   },
+  output: { // make our template globally importable
+    library: 'compiledDefaultTemplates',
+    libraryTarget: 'umd',    
+    umdNamedDefine: true
+  },
   module: {
     rules: [
       {
@@ -32,8 +37,16 @@ mix.webpackConfig({
             options: 'template'
         }] 
       },
+      { 
+        test: require.resolve("./src/templates/defaults/index.js"), 
+        use: [{
+            loader: 'expose-loader',
+            options: 'template'
+        }] 
+      },
     ],
   },
 });
 
 mix.js('src/templates/index.js', 'src/templates/compiledTemplates.js')
+mix.js('src/templates/defaults/index.js', 'src/templates/defaults/compiledDefaultTemplates.js')

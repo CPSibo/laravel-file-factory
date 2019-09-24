@@ -7,6 +7,7 @@ import SampleAppSketchButton from './utilities/sketchButtons/SampleApp'
 import Setting from '@pipe-dream/core/src/utilities/Setting'
 
 import templates from './templates/compiledTemplates'
+import defaultTemplates from './templates/defaults/compiledDefaultTemplates'
 
 import APIControllerPipe from './pipes/APIControllerPipe'
 import APIResourcePipe from './pipes/APIResourcePipe'
@@ -29,6 +30,10 @@ export default class LaravelFileFactory extends BaseFileFactory{
 
     static templates() {
         return templates
+    }
+
+    static defaultTemplates() {
+        return defaultTemplates
     }
 
     static get title(){

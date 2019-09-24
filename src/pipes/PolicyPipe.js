@@ -1,4 +1,4 @@
-import { Template } from '@pipe-dream/core/dist/pipe-dream.js'
+import { Template, PartialTemplate } from '@pipe-dream/core/dist/pipe-dream.js'
 import ModelPipe from './ModelPipe';
 import F from '../utilities/Formatter'
 
@@ -12,6 +12,12 @@ export default class PolicyPipe extends ModelPipe {
     calculateFiles(omc = ObjectModelCollection) {
         return [
             ... this.PolicyFiles()
+        ]
+    }
+
+    calculatePartialFiles(omc = ObjectModelCollection) {
+        return [
+            ... this.PartialFiles()
         ]
     }
 
@@ -29,5 +35,14 @@ export default class PolicyPipe extends ModelPipe {
                 })
             }
         })
+    }
+
+    PartialFiles() {
+        console.log(PartialTemplate.for('app/Providers/AuthServiceProvider.php', 'AuthServiceProvider.php.partial'))
+
+        return [{
+            path: "app/Providers/AuthServiceProvider.php",
+            pieces: PartialTemplate.for('app/Providers/AuthServiceProvider.php', 'AuthServiceProvider.php.partial').build()
+        }]
     }
 }
